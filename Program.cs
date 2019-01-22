@@ -10,40 +10,45 @@ namespace PrintingCharsAtIndicesInStrings
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("number of strings to expect");
-            int T = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("give int");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            string[] stringArr = new string[num];
+
+            Console.WriteLine("give {0} string(s)", num);
 
 
-            Console.WriteLine("type that number of strings");
-            string input = Console.ReadLine();
-
-            StringBuilder outputOdd = new StringBuilder();
-            StringBuilder outputEven = new StringBuilder();
-
-            if (numOfArgs == 1)
+            // loop through user input adding to string array at index 0, 1, 2, etc....
+            int i = 0;
+            while (i < num)
             {
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        outputEven.Append(input[i]);
-                    }
-                }
-
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (i % 2 != 0)
-                    {
-                        outputOdd.Append(input[i]);
-                    }
-                }
-
-                Console.Write(outputEven + " ");
-                Console.WriteLine(outputOdd);
+                stringArr[i] = Console.ReadLine();
+                i++;
             }
 
-           
+            // loop through the strings in string array
+            foreach (string a in stringArr)
+            {
+                string evens = "";
+                string odds = "";
+                bool isEven = true;
 
-        }
+                // loop through the letters in each string
+                for (int j = 0; j < a.Length; j++)
+                {
+                    if (isEven)
+                    {
+                        evens = evens + a[j];
+                    } else
+                    {
+                        odds = odds + a[j];
+                    }
+
+                    // toggle the bool isEven to true or false to keep loop going until completion
+                    isEven =! isEven;
+                }
+                Console.WriteLine($"{evens} {odds}");
+            }
+        }   
     }
 }
